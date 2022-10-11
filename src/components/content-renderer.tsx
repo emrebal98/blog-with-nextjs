@@ -226,7 +226,7 @@ const renderOptions: HTMLReactParserOptions = {
     // Code
     if (name === 'code') {
       return (
-        <code className="rounded bg-gray-200 py-0.5 px-1 text-gray-600 dark:bg-gray-800 dark:text-gray-400">
+        <code className="break-words rounded bg-gray-200 py-0.5 px-1 text-gray-600 dark:bg-gray-800 dark:text-gray-400">
           {domToReact(children, renderOptions)}
         </code>
       );
@@ -235,6 +235,19 @@ const renderOptions: HTMLReactParserOptions = {
     // Br
     if (name === 'br') {
       return <span className="block">&nbsp;</span>;
+    }
+
+    // Iframe
+    if (name === 'iframe') {
+      console.log(domNode);
+      return (
+        <iframe
+          className="h-[300px] w-full md:h-[400px] 2xl:h-[500px]"
+          {...attribs}
+        >
+          {domToReact(children, renderOptions)}
+        </iframe>
+      );
     }
   },
 };
