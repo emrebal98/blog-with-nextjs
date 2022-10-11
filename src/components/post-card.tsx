@@ -44,8 +44,8 @@ const PostCard: FunctionComponent<PostCardProps> = ({ post, isFeautured }) => {
       </figure>
 
       <div
-        className={`flex h-full flex-col gap-2${
-          isFeautured ? ' md:justify-center' : ''
+        className={`flex h-full w-full flex-col gap-2${
+          isFeautured ? '  w-[80%] md:justify-center' : ''
         }`}
       >
         {/* Category and Date */}
