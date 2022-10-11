@@ -5,12 +5,15 @@ import { env } from '../env/server.mjs';
 import type { GetStaticProps } from 'next';
 import type { NextPageWithLayout } from './_app';
 import type { Post } from '../types';
+import { useSearchStore } from '../stores';
 
 interface HomePageProps {
   posts: Post[];
 }
 
 const Home: NextPageWithLayout<HomePageProps> = ({ posts }) => {
+  const { search } = useSearchStore();
+
   return (
     <>
       <Head>
@@ -21,9 +24,15 @@ const Home: NextPageWithLayout<HomePageProps> = ({ posts }) => {
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
         {posts ? (
-          posts.map((post, i) => (
-            <PostCard key={post.id} isFeautured={i === 0} post={post} />
-          ))
+          posts
+            .filter((f) => f.title.includes(search))
+            .map((post, i) => (
+              <PostCard
+                key={post.id}
+                isFeautured={i === 0 || search.length > 0}
+                post={post}
+              />
+            ))
         ) : (
           <div>Loading...</div>
         )}
