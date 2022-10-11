@@ -5,13 +5,14 @@ import parse, {
   HTMLReactParserOptions,
 } from 'html-react-parser';
 import Link from 'next/link';
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import { atomOneDark } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 import type { FunctionComponent } from 'react';
 
 interface ContentRendererProps {
   content: string;
 }
 
-// TODO: implement render properly
 const renderOptions: HTMLReactParserOptions = {
   replace: (domNode) => {
     if (!(domNode instanceof Element)) {
@@ -31,7 +32,8 @@ const renderOptions: HTMLReactParserOptions = {
       }
     }
 
-    const marginStyles = (count: number) => ` mb-${count * 2}`;
+    const marginStyles = (count: number, divider = 1) =>
+      ` mb-${(count * 2) / divider}`;
 
     // Paragraph
     if (name === 'p') {
@@ -80,6 +82,19 @@ const renderOptions: HTMLReactParserOptions = {
         >
           {domToReact(children, renderOptions)}
         </h2>
+      );
+    }
+
+    // Heading 3
+    if (name === 'h3') {
+      return (
+        <h3
+          className={`mt-4 text-xl font-semibold leading-relaxed text-gray-800 dark:text-gray-200${
+            marginBottom > 0 ? marginStyles(marginBottom) : ''
+          }`}
+        >
+          {domToReact(children, renderOptions)}
+        </h3>
       );
     }
 
@@ -140,7 +155,11 @@ const renderOptions: HTMLReactParserOptions = {
     // Blockquote
     if (name === 'blockquote') {
       return (
-        <blockquote className="shadow-quote pl-8">
+        <blockquote
+          className={`shadow-quote pl-8${
+            marginBottom > 0 ? marginStyles(marginBottom) : ''
+          }`}
+        >
           {domToReact(children, renderOptions)}
         </blockquote>
       );
@@ -159,6 +178,55 @@ const renderOptions: HTMLReactParserOptions = {
         </Link>
       );
     }
+
+    // Div
+    if (name === 'div') {
+      // To remove
+      if (attribs.class === 'highlight__panel js-actions-panel') {
+        return <></>;
+      }
+      // To remove and preserve white space
+      if (attribs.class === 'highlight js-code-highlight') {
+        return (
+          <div
+            className={`overflow-hidden rounded ${
+              marginBottom > 0 ? marginStyles(marginBottom, 2) : ''
+            }`}
+          >
+            {domToReact(children, renderOptions)}
+          </div>
+        );
+      }
+    }
+
+    // Pre
+    if (name === 'pre') {
+      const result: Text[] = [];
+      //To combine code lines as one string
+      RecursiveGetText(children, result);
+      const codeText = result.map((r) => r.data).join('');
+      const language = attribs.class?.split(' ')[1];
+
+      return (
+        <SyntaxHighlighter language={language} style={atomOneDark}>
+          {codeText}
+        </SyntaxHighlighter>
+      );
+    }
+
+    // Code
+    if (name === 'code') {
+      return (
+        <code className="rounded bg-gray-200 py-0.5 px-1 text-gray-600 dark:bg-gray-800 dark:text-gray-400">
+          {domToReact(children, renderOptions)}
+        </code>
+      );
+    }
+
+    // Br
+    if (name === 'br') {
+      return <p>&nbsp;</p>;
+    }
   },
 };
 
@@ -169,3 +237,14 @@ const ContentRenderer: FunctionComponent<ContentRendererProps> = ({
 };
 
 export { ContentRenderer };
+
+const RecursiveGetText = (children: Element['children'], result: Text[]) => {
+  for (let i = 0; i < children.length; i++) {
+    const element = children[i];
+    if (element instanceof Element) {
+      RecursiveGetText(element.children, result);
+    } else {
+      result.push(element as Text);
+    }
+  }
+};
