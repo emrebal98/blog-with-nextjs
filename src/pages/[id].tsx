@@ -28,9 +28,7 @@ const PostPage: NextPageWithLayout<PostPageProps> = ({ post }) => {
 
   return (
     <>
-      {/* TODO: SEO  */}
-      {/* TODO: overflow hidden*/}
-      <article>
+      <article className="overflow-hidden">
         <header className="my-10">
           <div className="mt-2 flex items-center gap-4">
             {user.profile_image_90 ? (
