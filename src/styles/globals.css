@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.background-search-icon {
+  background-position: 8px;
+  background-repeat: no-repeat;
+  background-size: 24px 24px;
+  background-image: url('../assets/light-searchicon.svg');
+}
+
+@layer components {
+  .dark-search-icon {
+    background-image: url('../assets/dark-searchicon.svg');
+  }
+
+  .shadow-quote {
+    box-shadow: inset 3px 0 0 0 rgb(255 254 255);
+  }
+}
