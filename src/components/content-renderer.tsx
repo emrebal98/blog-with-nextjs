@@ -167,6 +167,15 @@ const renderOptions: HTMLReactParserOptions = {
 
     // Link
     if (name === 'a') {
+      //Remove a tag from images
+      if (
+        children &&
+        children[0] instanceof Element &&
+        children[0].name === 'img'
+      ) {
+        return <> {domToReact(children, renderOptions)}</>;
+      }
+
       if (!attribs.href) return;
       return (
         <Link href={`${attribs.href}`} prefetch={false}>
@@ -225,7 +234,7 @@ const renderOptions: HTMLReactParserOptions = {
 
     // Br
     if (name === 'br') {
-      return <p>&nbsp;</p>;
+      return <span className="block">&nbsp;</span>;
     }
   },
 };
