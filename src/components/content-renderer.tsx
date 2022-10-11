@@ -148,8 +148,9 @@ const renderOptions: HTMLReactParserOptions = {
 
     // Link
     if (name === 'a') {
+      if (!attribs.href) return;
       return (
-        <Link href={`${attribs.href}`}>
+        <Link href={`${attribs.href}`} prefetch={false}>
           {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
           {/* @ts-ignore */}
           <a className="underline" name={attribs.name}>
