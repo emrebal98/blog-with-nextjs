@@ -19,7 +19,7 @@ const Navbar: FunctionComponent = () => {
           width={40}
           height={40}
         />
-        <figcaption className="text-gray-800 dark:text-gray-200">
+        <figcaption className="text-xl text-gray-800 dark:text-gray-200">
           Blog
         </figcaption>
       </figure>
