@@ -45,11 +45,11 @@ const PostCard: FunctionComponent<PostCardProps> = ({ post, isFeautured }) => {
 
       <div
         className={`flex h-full w-full flex-col gap-2${
-          isFeautured ? '  w-[80%] md:justify-center' : ''
+          isFeautured ? ' md:w-[80%] md:justify-center' : ''
         }`}
       >
         {/* Category and Date */}
-        <p className="flex gap-2 text-sm text-gray-600 dark:text-gray-400">
+        <p className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
           <span>{`${reading_time_minutes} minutes read`}</span>
           <span>•</span>
           <span>{moment(published_timestamp).format('MMM DD, YYYY')}</span>

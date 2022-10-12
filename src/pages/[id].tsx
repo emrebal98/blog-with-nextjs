@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Head from 'next/head';
 import moment from 'moment';
 import axios, { AxiosResponse } from 'axios';
 import { ContentRenderer, Layout } from '../components';
@@ -28,17 +29,23 @@ const PostPage: NextPageWithLayout<PostPageProps> = ({ post }) => {
 
   return (
     <>
+      <Head>
+        <title>{`Blog - ${title}`}</title>
+        <meta name="description" content="Blog website" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
       <article className="overflow-hidden">
         <header className="my-10">
           <div className="mt-2 flex items-center gap-4">
             {user.profile_image_90 ? (
-              <Image
-                className="rounded-full"
-                src={user.profile_image_90}
-                alt={`${user.name} avatar`}
-                width={50}
-                height={50}
-              />
+              <figure className="relative h-10 w-10 overflow-hidden rounded-full sm:h-[50px] sm:w-[50px]">
+                <Image
+                  src={user.profile_image_90}
+                  alt={`${user.name} avatar`}
+                  layout="fill"
+                />
+              </figure>
             ) : (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -59,13 +66,13 @@ const PostPage: NextPageWithLayout<PostPageProps> = ({ post }) => {
               <span className="font-semibold text-gray-800 dark:text-gray-200">
                 {user.name}
               </span>
-              <p className="flex gap-2 text-sm text-gray-600 dark:text-gray-400">
-                <span>{user.username}</span>
-                <span>•</span>
+              <p className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+                <span className="hidden sm:block">{user.username}</span>
+                <span className="hidden sm:block">•</span>
                 <span>{`${reading_time_minutes} minutes read`}</span>
                 <span>•</span>
                 <span>
-                  {moment(published_timestamp).format('MMM dd, YYYY')}
+                  {moment(published_timestamp).format('MMM DD, YYYY')}
                 </span>
               </p>
             </p>
