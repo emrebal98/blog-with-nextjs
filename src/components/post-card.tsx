@@ -40,6 +40,7 @@ const PostCard: FunctionComponent<PostCardProps> = ({ post, isFeautured }) => {
           alt="cover image"
           layout="fill"
           objectFit="cover"
+          priority={true}
         />
       </figure>
 

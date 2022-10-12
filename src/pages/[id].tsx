@@ -94,6 +94,7 @@ const PostPage: NextPageWithLayout<PostPageProps> = ({ post }) => {
               alt="cover image"
               layout="fill"
               objectFit="cover"
+              priority={true}
             />
           </figure>
           {body_html ? (
