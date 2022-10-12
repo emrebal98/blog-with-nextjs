@@ -30,7 +30,7 @@ const Layout: FunctionComponent<LayoutProps> = ({ children }) => {
       <main>{children}</main>
       {/* Scroll to top button */}
       <button
-        className={`fixed bottom-0 right-0 rounded-tl-full bg-slate-300 pr-1 pb-1 pt-3 pl-3 transition-opacity duration-300 ease-in dark:bg-slate-700${
+        className={`fixed bottom-0 right-0 rounded-tl-full bg-slate-300 pr-1 pb-1 pt-3 pl-3 transition-opacity duration-300 ease-in md:pt-4 md:pl-4 dark:bg-slate-700${
           show ? ' visible opacity-100' : ' invisible opacity-0'
         }`}
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
