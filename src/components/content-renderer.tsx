@@ -239,7 +239,6 @@ const renderOptions: HTMLReactParserOptions = {
 
     // Iframe
     if (name === 'iframe') {
-      console.log(domNode);
       return (
         <iframe
           className="h-[300px] w-full md:h-[400px] 2xl:h-[500px]"
