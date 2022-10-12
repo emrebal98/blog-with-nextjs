@@ -7,9 +7,14 @@ import type { Post } from '../types';
 export interface PostCardProps {
   post: Post;
   isFeautured?: boolean;
+  isCoverPriority?: boolean;
 }
 
-const PostCard: FunctionComponent<PostCardProps> = ({ post, isFeautured }) => {
+const PostCard: FunctionComponent<PostCardProps> = ({
+  post,
+  isFeautured,
+  isCoverPriority,
+}) => {
   const {
     id,
     cover_image,
@@ -40,7 +45,7 @@ const PostCard: FunctionComponent<PostCardProps> = ({ post, isFeautured }) => {
           alt="cover image"
           layout="fill"
           objectFit="cover"
-          priority={true}
+          priority={isCoverPriority ? true : false}
         />
       </figure>
 

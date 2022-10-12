@@ -31,6 +31,7 @@ const Home: NextPageWithLayout<HomePageProps> = ({ posts }) => {
                 key={post.id}
                 isFeautured={i === 0 || search.length > 0}
                 post={post}
+                isCoverPriority={i < 7}
               />
             ))
         ) : (
