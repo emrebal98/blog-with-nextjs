@@ -4,7 +4,7 @@ import { Layout, PostCard } from '../components';
 import { env } from '../env/server.mjs';
 import type { GetStaticProps } from 'next';
 import type { NextPageWithLayout } from './_app';
-import type { Post } from '../types';
+import type { Post, PostResponse } from '../types';
 import { useSearchStore } from '../stores';
 
 interface HomePageProps {
@@ -47,11 +47,29 @@ export default Home;
 
 export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
   //Fetch posts
-  const postsResponse: AxiosResponse<Post[]> = await axios.get(
+  const postsResponse: AxiosResponse<PostResponse[]> = await axios.get(
     `${env.API_URL}?tag=nextjs&top=365`
   );
 
+  //Remove unused properties to reduce threshold size
+  const posts: Post[] = postsResponse.data.map((item) => {
+    return {
+      id: item.id,
+      title: item.title,
+      description: item.description,
+      published_timestamp: item.published_timestamp,
+      cover_image: item.cover_image,
+      reading_time_minutes: item.reading_time_minutes,
+      user: {
+        name: item.user.name,
+        username: item.user.username,
+        profile_image_90: item.user.profile_image_90,
+      },
+      body_html: '',
+    };
+  });
+
   return {
-    props: { posts: postsResponse.data },
+    props: { posts },
   };
 };

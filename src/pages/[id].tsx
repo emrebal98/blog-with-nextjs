@@ -7,7 +7,7 @@ import { env } from '../env/server.mjs';
 import type { GetStaticPaths, GetStaticProps } from 'next';
 import type { ParsedUrlQuery } from 'querystring';
 import type { NextPageWithLayout } from './_app';
-import type { Post } from '../types';
+import type { Post, PostResponse } from '../types';
 
 interface PostPageProps {
   post: Post;
@@ -119,22 +119,38 @@ export const getStaticProps: GetStaticProps<PostPageProps, Query> = async (
   const { id } = context.params;
 
   //Fetch post data
-  const postResponse: AxiosResponse<Post> = await axios.get(
+  const postResponse: AxiosResponse<PostResponse> = await axios.get(
     `${env.API_URL}/${id}`
   );
 
   if (!postResponse.data) return { notFound: true };
 
+  //Remove unused properties to reduce threshold size
+  const post: Post = {
+    id: postResponse.data.id,
+    title: postResponse.data.title,
+    description: '',
+    published_timestamp: postResponse.data.published_timestamp,
+    cover_image: postResponse.data.cover_image,
+    reading_time_minutes: postResponse.data.reading_time_minutes,
+    user: {
+      name: postResponse.data.user.name,
+      username: postResponse.data.user.username,
+      profile_image_90: postResponse.data.user.profile_image_90,
+    },
+    body_html: postResponse.data.body_html,
+  };
+
   return {
     props: {
-      post: postResponse.data,
+      post,
     },
   };
 };
 
 export const getStaticPaths: GetStaticPaths<Query> = async () => {
   //Fetch posts
-  const postsResponse: AxiosResponse<Post[]> = await axios.get(
+  const postsResponse: AxiosResponse<PostResponse[]> = await axios.get(
     `${env.API_URL}?tag=nextjs&top=365`
   );
 
