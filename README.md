@@ -71,8 +71,8 @@ $ npm install
 # Create .env file
 $ cp .env-example .env # the api url using on demo is https://dev.to/api/articles
 
-# Run the project
-$ npm start
+# Build & Run the project
+$ npm run build && npm run start
 
 # The server will initialize in the <http://localhost:3000>
 ```
