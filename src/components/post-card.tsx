@@ -35,7 +35,7 @@ const PostCard: FunctionComponent<PostCardProps> = ({
       onClick={() => router.push(id.toString())}
     >
       {/* Cover Image */}
-      <figure className="relative h-full min-h-[25vh] w-full self-center overflow-hidden rounded">
+      <figure className="relative h-full min-h-[200px] md:min-h-[250px] w-full self-center overflow-hidden rounded">
         <Image
           src={
             cover_image

@@ -84,7 +84,7 @@ const PostPage: NextPageWithLayout<PostPageProps> = ({ post }) => {
             {title}
           </h1>
           {/* Cover Image */}
-          <figure className="relative mb-4 h-full min-h-[35vh] w-full overflow-hidden rounded">
+          <figure className="relative mb-4 h-full min-h-[300px] md:min-h-[350px] w-full overflow-hidden rounded">
             <Image
               src={
                 cover_image
