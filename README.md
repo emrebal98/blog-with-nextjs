@@ -1,50 +1,87 @@
-# Create T3 App
+<div align="center" id="top">
 
-This is an app bootstrapped according to the [init.tips](https://init.tips) stack, also known as the T3-Stack.
+&#xa0;
 
-## Why are there `.js` files in here?
+<a href="https://blog-with-nextjs-emrebal98.vercel.app">Demo</a>
 
-As per [T3-Axiom #3](https://github.com/t3-oss/create-t3-app/tree/next#3-typesafety-isnt-optional), we take typesafety as a first class citizen. Unfortunately, not all frameworks and plugins support TypeScript which means some of the configuration files have to be `.js` files.
+</div>
 
-We try to emphasize that these files are javascript for a reason, by explicitly declaring its type (`cjs` or `mjs`) depending on what's supported by the library it is used by. Also, all the `js` files in this project are still typechecked using a `@ts-check` comment at the top.
+<h1 align="center">Blog With Nextjs</h1>
 
-## What's next? How do I make an app with this?
+<p align="center">
+  <img alt="Github top language" src="https://img.shields.io/github/languages/top/emrebal98/blog-with-nextjs?color=56BEB8">
 
-We try to keep this project as simple as possible, so you can start with the most basic configuration and then move on to more advanced configuration.
+  <img alt="Github language count" src="https://img.shields.io/github/languages/count/emrebal98/blog-with-nextjs?color=56BEB8">
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/emrebal98/blog-with-nextjs?color=56BEB8">
 
-- [Next-Auth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [TailwindCSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io) (using @next version? [see v10 docs here](https://trpc.io/docs/v10/))
+  <img alt="License" src="https://img.shields.io/github/license/emrebal98/blog-with-nextjs?color=56BEB8">
+</p>
 
-Also checkout these awesome tutorials on `create-t3-app`.
+<p align="center">
+  <a href="#dart-about">About</a> &#xa0; | &#xa0; 
+  <a href="#sparkles-features">Features</a> &#xa0; | &#xa0;
+  <a href="#rocket-technologies">Technologies</a> &#xa0; | &#xa0;
+  <a href="#white_check_mark-requirements">Requirements</a> &#xa0; | &#xa0;
+  <a href="#checkered_flag-starting">Starting</a> &#xa0; | &#xa0;
+  <a href="#memo-license">License</a> &#xa0; | &#xa0;
+  <a href="https://github.com/emrebal98" target="_blank">Author</a>
+</p>
 
-- [Build a Blog With the T3 Stack - tRPC, TypeScript, Next.js, Prisma & Zod](https://www.youtube.com/watch?v=syEWlxVFUrY)
-- [Build a Live Chat Application with the T3 Stack - TypeScript, Tailwind, tRPC](https://www.youtube.com/watch?v=dXRRY37MPuk)
-- [Build a full stack app with create-t3-app](https://www.nexxel.dev/blog/ct3a-guestbook)
-- [A first look at create-t3-app](https://dev.to/ajcwebdev/a-first-look-at-create-t3-app-1i8f)
+<br>
 
-## How do I deploy this?
+## :dart: About
 
-### Vercel
+This is simple blog website which use dev.to api to generate blog posts.
 
-We recommend deploying to [Vercel](https://vercel.com/?utm_source=t3-oss&utm_campaign=oss). It makes it super easy to deploy NextJs apps.
+## :sparkles: Features
 
-- Push your code to a GitHub repository.
-- Go to [Vercel](https://vercel.com/?utm_source=t3-oss&utm_campaign=oss) and sign up with GitHub.
-- Create a Project and import the repository you pushed your code to.
-- Add your environment variables.
-- Click **Deploy**
-- Now whenever you push a change to your repository, Vercel will automatically redeploy your website!
+:heavy_check_mark: Feature 1;\
+:heavy_check_mark: Feature 2;\
+:heavy_check_mark: Feature 3;
 
-### Docker
+## :rocket: Technologies
 
-You can also dockerize this stack and deploy a container. See the [Docker deployment page](https://create-t3-app-nu.vercel.app/en/deployment/docker) for details.
+The following tools were used in this project:
 
-## Useful resources
+- [Next.js](https://nextjs.org/)
+- [React](https://reactjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [TailwindCSS](https://tailwindcss.com/)
+- [Zustand](https://docs.pmnd.rs/zustand/getting-started/introduction)
+- [Axios](https://axios-http.com/)
 
-Here are some resources that we commonly refer to:
+## :white_check_mark: Requirements
 
-- [Protecting routes with Next-Auth.js](https://next-auth.js.org/configuration/nextjs#unstable_getserversession)
+Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) and [Node](https://nodejs.org/en/) installed.
+
+## :checkered_flag: Starting
+
+```bash
+# Clone this project
+$ git clone https://github.com/emrebal98/blog-with-nextjs
+
+# Access
+$ cd blog-with-nextjs
+
+# Install dependencies
+$ npm install
+
+# Create .env file
+$ cp .env-example .env # the api url using on demo is https://dev.to/api/articles
+
+# Run the project
+$ npm start
+
+# The server will initialize in the <http://localhost:3000>
+```
+
+## :memo: License
+
+This project is under license from MIT. For more details, see the [LICENSE](LICENSE.md) file.
+
+Made with :heart: by <a href="https://github.com/emrebal98" target="_blank">Emre Bal</a>
+
+&#xa0;
+
+<a href="#top">Back to top</a>
