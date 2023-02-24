@@ -239,10 +239,11 @@ const renderOptions: HTMLReactParserOptions = {
 
     // Iframe
     if (name === 'iframe') {
+      const { style, ...rest } = attribs;      
       return (
         <iframe
           className="h-[300px] w-full md:h-[400px] 2xl:h-[500px]"
-          {...attribs}
+          {...rest}
         >
           {domToReact(children, renderOptions)}
         </iframe>
