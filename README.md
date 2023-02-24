@@ -36,9 +36,10 @@ This is simple blog website which use dev.to api to generate blog posts.
 
 ## :sparkles: Features
 
-:heavy_check_mark: Feature 1;\
-:heavy_check_mark: Feature 2;\
-:heavy_check_mark: Feature 3;
+:heavy_check_mark: Parse HTML post content to dom;\
+:heavy_check_mark: Syntax highlighting on code in the post content;\
+:heavy_check_mark: Static Site Generation (SSG);\
+:heavy_check_mark: Dark and light mode (according to system preference);
 
 ## :rocket: Technologies
 
